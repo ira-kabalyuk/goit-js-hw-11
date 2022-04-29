@@ -1,4 +1,7 @@
+
+import SimpleLightbox from 'simplelightbox';
 import Notiflix from 'notiflix';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 import './sass/main.scss';
 
 import imageTpl from './templates/image-card.hbs';
@@ -18,15 +21,16 @@ let page = 1;
 let searchValue = '';
 let perPage = 40;
 
+new SimpleLightbox('.gallery a', {});
 
 function renderImages(event) {
   event.preventDefault();
   searchValue = event.currentTarget.elements.searchQuery.value;
   fetchGallery(searchValue, page, perPage)
-    .then(renderImageCard)   
+    .then(renderImageCard)
     .catch(onFetchError);
   resetPage();
-  clearArticleGallery();  
+  clearArticleGallery();
 }
 
 function renderImageCard(images) {
